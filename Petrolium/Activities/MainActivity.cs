@@ -32,6 +32,8 @@ namespace Petrolium
 
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
+            var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
+            SetSupportActionBar(toolbar);
 
           
             _companies = DataRequest.GetDataFromApi<List<Company>>(url);
