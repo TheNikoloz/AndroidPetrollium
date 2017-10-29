@@ -22,9 +22,9 @@ namespace Petrolium
 
         List<Company> _companies = new List<Company>();
         string url = "http://georgianpetroleum.azurewebsites.net/PetrolCompanies";
-        RecyclerView mRecyclerView;
-        RecyclerView.LayoutManager mLayoutManager;
-        CompanyRecyclerAdapter mAdapter;
+        RecyclerView MyRecyclerView;
+        RecyclerView.LayoutManager MyLayoutmanager;
+        CompanyRecyclerAdapter MyAdapter;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -38,12 +38,12 @@ namespace Petrolium
           
             _companies = DataRequest.GetDataFromApi<List<Company>>(url);
 
-            mRecyclerView = FindViewById<RecyclerView>(Resource.Id.container);
-            mLayoutManager = new LinearLayoutManager(this);
-            mRecyclerView.SetLayoutManager(mLayoutManager);
+            MyRecyclerView = FindViewById<RecyclerView>(Resource.Id.container);
+            MyLayoutmanager = new LinearLayoutManager(this);
+            MyRecyclerView.SetLayoutManager(MyLayoutmanager);
 
-            mAdapter = new CompanyRecyclerAdapter(this, _companies);
-            mRecyclerView.SetAdapter(mAdapter);
+            MyAdapter = new CompanyRecyclerAdapter(this, _companies);
+            MyRecyclerView.SetAdapter(MyAdapter);
         
         }
     }
