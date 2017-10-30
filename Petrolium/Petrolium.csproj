@@ -95,6 +95,7 @@
     <Compile Include="POCO\Company.cs" />
     <Compile Include="POCO\Details.cs" />
     <Compile Include="Adapters\CompanyRecyclerAdapter.cs" />
+    <Compile Include="Adapters\DetailRecyclerViewAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -112,9 +113,14 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\Icon.png" />
     <AndroidResource Include="Resources\layout\Company.axml" />
     <AndroidResource Include="Resources\layout\CompanyDetails.xml" />
-    <AndroidResource Include="Resources\layout\MainDetails.axml" />
     <AndroidResource Include="Resources\values\styles.xml" />
     <AndroidResource Include="Resources\drawable\gulf.png" />
+    <AndroidResource Include="Resources\layout\MainDetails.axml" />
+    <AndroidResource Include="Resources\drawable\socar.png" />
+    <AndroidResource Include="Resources\drawable\lukoil.png" />
+    <AndroidResource Include="Resources\drawable\Wissol.png" />
+    <AndroidResource Include="Resources\drawable\frego.png" />
+    <AndroidResource Include="Resources\drawable\rompetrol.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

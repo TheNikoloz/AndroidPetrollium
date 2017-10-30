@@ -43,8 +43,18 @@ namespace Petrolium
             MyRecyclerView.SetLayoutManager(MyLayoutmanager);
 
             MyAdapter = new CompanyRecyclerAdapter(this, _companies);
+            MyAdapter.ItemClick += OnItemClick;
             MyRecyclerView.SetAdapter(MyAdapter);
         
+        }
+
+        private void OnItemClick(object sender, int position)
+        {
+            Intent intent = new Intent(this, typeof(DetailsActivity));
+            intent.PutExtra(GetText(Resource.String.DetailsStringToJSON),
+                            JsonConvert.SerializeObject(_companies[position].Fuels));
+
+            StartActivity(intent);
         }
     }
 }

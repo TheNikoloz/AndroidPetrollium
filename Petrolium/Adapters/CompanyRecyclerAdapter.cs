@@ -18,8 +18,9 @@ namespace Petrolium.Adapters
 {
     public class CompanyRecyclerAdapter : RecyclerView.Adapter
     {
-        List<Company> _companies = new List<Company>();
+        static List<Company> _companies = new List<Company>();
         public CompanyRecyclerAdapter(Context context, List<Company> companies) => _companies = companies;
+        public event EventHandler<int> ItemClick;
 
         public override int ItemCount => _companies.Count;
 
@@ -28,7 +29,7 @@ namespace Petrolium.Adapters
             public ImageView companyImageView
             {
                 get;
-                set;
+                set; 
             }
 
             public TextView companyNameView
@@ -37,25 +38,61 @@ namespace Petrolium.Adapters
                 set;
             }
 
-            public CompanyViewHolder(View itemView) : base(itemView)
+            public CompanyViewHolder(View itemView, Action<int> listener) : base(itemView)
             {
+                
                 companyImageView = itemView.FindViewById<ImageView>(Resource.Id.company_image);
                 companyNameView = itemView.FindViewById<TextView>(Resource.Id.company_name);
+
+              
+
+                itemView.Click += (sender, e) => listener(base.Position);
             }
+
+        }
+
+        private void OnClick(int position)
+        {
+            if (ItemClick != null)
+                ItemClick(this, position);
         }
 
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
             CompanyViewHolder vh = holder as CompanyViewHolder;
-                         
-            vh.companyImageView.SetImageResource(Resource.Drawable.gulf);
+
+            switch(_companies[position].Name)
+            {
+                case "Gulf":
+                    vh.companyImageView.SetImageResource(Resource.Drawable.gulf);
+                    break;
+
+                case "Lukoil":
+                    vh.companyImageView.SetImageResource(Resource.Drawable.lukoil);
+                    break;
+                case "Rompetrol":
+                    vh.companyImageView.SetImageResource(Resource.Drawable.rompetrol);
+                    break;
+                case "Frego":
+                    vh.companyImageView.SetImageResource(Resource.Drawable.frego);
+                    break;
+                case "Socar":
+                    vh.companyImageView.SetImageResource(Resource.Drawable.socar);
+                    break;
+                case "Wissol":
+                    vh.companyImageView.SetImageResource(Resource.Drawable.Wissol);
+                    break;
+            }
+         
+
             vh.companyNameView.Text = _companies[position].Name; 
+
         }
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
             View itemview = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.Company, parent, false);
-            CompanyViewHolder vh = new CompanyViewHolder(itemview);
+            CompanyViewHolder vh = new CompanyViewHolder(itemview,OnClick);
 
             return vh;
         }
